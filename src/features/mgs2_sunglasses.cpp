@@ -37,7 +37,7 @@ bool MGS2Sunglasses::ShouldTriggerSunglasses()
 void MGS2Sunglasses::CheckOnTransition()
 {
     static bool bSunglassesTriggered = false;
-    if (g_SteamAPI.bIsLegitCopy || g_MGS2Sunglasses.bAlwaysWearingSunglasses || bSunglassesTriggered)
+    if (g_MGS2Sunglasses.bEnabled || g_MGS2Sunglasses.bAlwaysWearingSunglasses || bSunglassesTriggered)
     {
         return;
     }
@@ -58,13 +58,13 @@ void MGS2Sunglasses::Initialize()
         return;
     }
 
-    if (!g_MGS2Sunglasses.bEnabled && g_SteamAPI.bIsLegitCopy)
+    if (!g_MGS2Sunglasses.bEnabled)
     {
         return;
     }
 
 
-    if (g_MGS2Sunglasses.bAlwaysWearingSunglasses || !g_SteamAPI.bIsLegitCopy)
+    if (g_MGS2Sunglasses.bAlwaysWearingSunglasses)
     {
         if (g_MGS2Sunglasses.aCompletionCheckResult = Memory::PatternScan(baseModule, "74 ?? B9 ?? ?? ?? ?? BA ?? ?? ?? ?? 44 8D 49", "completion check 1"); g_MGS2Sunglasses.bAlwaysWearingSunglasses)
         {
