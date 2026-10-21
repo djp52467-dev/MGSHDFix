@@ -1,0 +1,28 @@
+name: Download MGSHDFix Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Build MGSHDFix
+        shell: pwsh
+        run: |
+          msbuild MGSHDFix.sln /p:Configuration=Release /p:Platform=x64
+
+      - name: Upload compiled files
+        uses: actions/upload-artifact@v4
+        with:
+          name: MGSHDFix-Custom-Build
+          path: |
+            **/Release/*.asi
+            **/x64/Release/*.asi
+          if-no-files-found: error
