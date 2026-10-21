@@ -37,7 +37,7 @@ bool MGS2Sunglasses::ShouldTriggerSunglasses()
 void MGS2Sunglasses::CheckOnTransition()
 {
     static bool bSunglassesTriggered = false;
-    if (g_MGS2Sunglasses.bEnabled || g_MGS2Sunglasses.bAlwaysWearingSunglasses || bSunglassesTriggered)
+    if (true)
     {
         return;
     }
